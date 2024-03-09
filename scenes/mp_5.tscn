@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://duecnb6tnn1r"]
+
+[ext_resource type="Script" path="res://scenes/mp_5.gd" id="1_4puxw"]
+[ext_resource type="Texture2D" uid="uid://c8xs2tbk7qidq" path="res://assets/mp5.png" id="1_enty4"]
+[ext_resource type="PackedScene" uid="uid://caaskaevg85kn" path="res://scenes/bullet.tscn" id="2_wohss"]
+
+[node name="MP5" type="Node2D" node_paths=PackedStringArray("barrel_pos")]
+script = ExtResource("1_4puxw")
+bullet = ExtResource("2_wohss")
+fireRate = 14.613
+barrel_pos = NodePath("Marker2D")
+max_ammo = 30
+current_ammo = 30
+shoot_mode = "auto"
+weapon_type = "machine_gun"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.36364, 2.36364)
+texture = ExtResource("1_enty4")
+offset = Vector2(14.01, 0)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(60.905, -4.695)

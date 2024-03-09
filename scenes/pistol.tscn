@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b13yg1u8jgiii"]
+
+[ext_resource type="Script" path="res://scenes/pistol.gd" id="1_f8lgn"]
+[ext_resource type="Texture2D" uid="uid://cnetmsweedw61" path="res://assets/pistol.png" id="2_n6ndj"]
+[ext_resource type="PackedScene" uid="uid://caaskaevg85kn" path="res://scenes/bullet.tscn" id="2_pb726"]
+
+[node name="Gun" type="Node2D" node_paths=PackedStringArray("barrel_pos")]
+script = ExtResource("1_f8lgn")
+bullet = ExtResource("2_pb726")
+fireRate = 3.0
+barrel_pos = NodePath("Marker2D")
+shoot_mode = "semi_auto"
+weapon_type = "pistol"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.85714, 2.66667)
+texture = ExtResource("2_n6ndj")
+centered = false
+offset = Vector2(10, -5.97)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(64, -4)
