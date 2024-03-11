@@ -24,27 +24,28 @@ func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if event.is_action("Shoot"):
-		trigger_pull = true
+	if get_parent().get_name() == "Weapons":
+		if event.is_action("Shoot"):
+			trigger_pull = true
 		if shoot_mode == "semi_auto":
 			shoot()
-	if event.is_action_released("Shoot"):
-		trigger_pull = false
+		if event.is_action_released("Shoot"):
+			trigger_pull = false
 
 func _physics_process(delta):
 	# AIMING LOGIC
-	look_at(get_global_mouse_position())
-	var aim_dir = get_global_mouse_position() - global_position
-	var aim_angle = atan2(aim_dir.y, aim_dir.x)
-	if aim_dir.x < 0:
-		scale.y = -1
-	else:
-		scale.y = 1
+	if get_parent().get_name() == "Weapons":
+		look_at(get_global_mouse_position())
+		var aim_dir = get_global_mouse_position() - global_position
+		var aim_angle = atan2(aim_dir.y, aim_dir.x)
+		if aim_dir.x < 0:
+			scale.y = -1
+		else:
+			scale.y = 1
+		# SHOOTING
+		if trigger_pull and shoot_mode == "auto":
+			shoot()
 	
-	print(trigger_pull)
-	# SHOOTING
-	if trigger_pull and shoot_mode == "auto":
-		shoot()
  
 func shoot():
 	if can_shoot and current_ammo > 0 and not is_reloading and trigger_pull:

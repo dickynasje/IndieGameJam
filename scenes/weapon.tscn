@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://2dymg61g7ujx"]
+
+[ext_resource type="Script" path="res://scenes/weapon.gd" id="1_aki3w"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_aki3w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
+
+[connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]

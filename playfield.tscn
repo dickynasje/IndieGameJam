@@ -3256,7 +3256,9 @@ layer_1/tile_data = PackedInt32Array(851968, 65536, 1, 851969, 131072, 1, 851970
 layer_2/name = "Objects"
 layer_2/tile_data = PackedInt32Array()
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_uep43")]
+[node name="Player" parent="." instance=ExtResource("1_uep43")]
 position = Vector2(114, 573)
 
-[node name="MP5" parent="CharacterBody2D" instance=ExtResource("7_ju7kd")]
+[node name="MP5" parent="." instance=ExtResource("7_ju7kd")]
+position = Vector2(378, 604)
+dropped = true
