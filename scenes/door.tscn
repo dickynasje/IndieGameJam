@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckj6cmgbndujg"]
+
+[ext_resource type="Texture2D" uid="uid://gr38vdl0cgxj" path="res://doubledoor.png" id="1_aqa3v"]
+[ext_resource type="Script" path="res://scenes/door.gd" id="1_l726f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6d6x"]
+size = Vector2(26, 24)
+
+[node name="Door" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_l726f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aqa3v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_u6d6x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

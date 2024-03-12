@@ -6,12 +6,17 @@ const JUMP_VELOCITY = -400.0
 var nearby_weapon: Node2D = null
 var current_state
 
+var dodge_chance: float = 20.0
+var armor: int = 25
+var HP: int = 100
+var money: int = 0
+
 enum State {Run, Idle, Jump, Shoot, Hurt}
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	current_weapon = weapons.get_child(0)
+	_restore_previous_state()
 	
 func _input(event):
 	if event.is_action_pressed("SwitchWeapon") and nearby_weapon != null:
@@ -59,12 +64,14 @@ func pick_up_weapon(weapon: Node2D):
 	weapon.dropped = false
 	weapon.position = Vector2.ZERO
 	current_weapon = weapon
+	Datasave.weapons.append(weapon.duplicate())
 	pass
 
 func drop_weapon():
 	if current_weapon == null:
 		return
 	var drop_position = nearby_weapon.global_position
+	Datasave.weapons.erase(current_weapon)
 	current_weapon.show()
 	current_weapon.get_parent().remove_child(current_weapon)
 	get_tree().root.add_child(current_weapon)
@@ -82,4 +89,24 @@ func notify_nearby_weapon(weapon: Node2D):
 
 func clear_nearby_weapon():
 	nearby_weapon = null
+	
+func _restore_previous_state():
+	self.HP = Datasave.HP
+	self.armor = Datasave.armor
+	self.dodge_chance = Datasave.dodge_chance
+	self.money = Datasave.money
+	
+	if Datasave.weapons.size() == 0:
+		for weapon in self.weapons.get_children():
+			Datasave.weapons.append(weapon)
+	else:
+		for weapon in Datasave.weapons:
+			weapon = weapon.duplicate()
+			weapon.hide()
+			weapon.position = Vector2.ZERO
+			weapons.add_child(weapon)
+		current_weapon = Datasave.weapons[0]
+		current_weapon.show()
+	
+	
 	

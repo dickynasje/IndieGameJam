@@ -18,6 +18,7 @@ func _process(delta):
 
 func _on_player_detect_body_entered(body: CharacterBody2D):
 	if body != null:
+		print("player in")
 		body.notify_nearby_weapon(self)
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://kbii0ap788y8"]
+[gd_scene load_steps=15 format=3 uid="uid://kbii0ap788y8"]
 
 [ext_resource type="PackedScene" uid="uid://c17wlii3d7f0s" path="res://scenes/player.tscn" id="1_uep43"]
 [ext_resource type="Texture2D" uid="uid://p33y0cb6pftk" path="res://assets/Dungeon Tile Set.png" id="2_6eewa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bfitetmdaisw1" path="res://assets/industrial.v1.png" id="4_wlri6"]
 [ext_resource type="Texture2D" uid="uid://bwu30qhqvat0h" path="res://assets/industrial.v2.png" id="5_rb1qf"]
 [ext_resource type="PackedScene" uid="uid://duecnb6tnn1r" path="res://scenes/mp_5.tscn" id="7_ju7kd"]
+[ext_resource type="PackedScene" uid="uid://ckj6cmgbndujg" path="res://scenes/door.tscn" id="8_8q73b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r88f2"]
 texture = ExtResource("2_6eewa")
@@ -3256,8 +3257,15 @@ layer_1/tile_data = PackedInt32Array(851968, 65536, 1, 851969, 131072, 1, 851970
 layer_2/name = "Objects"
 layer_2/tile_data = PackedInt32Array()
 
+[node name="Door" parent="." instance=ExtResource("8_8q73b")]
+position = Vector2(1026, 559)
+scale = Vector2(4, 4)
+scene_path = "res://playfield.tscn"
+
 [node name="Player" parent="." instance=ExtResource("1_uep43")]
-position = Vector2(114, 573)
+position = Vector2(72, 581)
+collision_layer = 7
+collision_mask = 5
 
 [node name="MP5" parent="." instance=ExtResource("7_ju7kd")]
 position = Vector2(378, 604)

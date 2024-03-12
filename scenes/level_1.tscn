@@ -1,3 +1,3 @@
 [gd_scene format=3 uid="uid://cg474yirm0qqu"]
 
-[node name="Level1" type="Node2D"]
+[node name="Level1" type="Node" groups=["Persist"]]
