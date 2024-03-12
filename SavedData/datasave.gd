@@ -5,3 +5,4 @@ var armor: int = 25
 var HP: int = 100
 var money: int = 0
 var weapons: Array = []
+var weaponbarrelpos: Marker2D

@@ -23,4 +23,8 @@ func _on_player_detect_body_entered(body: CharacterBody2D):
 
 
 func _on_player_detect_body_exited(body):
+	print("player out")
 	body.clear_nearby_weapon()
+
+func get_class_name():
+	return "mp5"
