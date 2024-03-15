@@ -4,7 +4,7 @@ extends "res://gun.gd"
 @onready var player_detect: Area2D = get_node("PlayerDetect")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	weapon_type = "machine_gun"
+
 	if not dropped:
 		player_detect.set_collision_mask_value(1, false)
 		player_detect.set_collision_mask_value(2, false)

@@ -11,20 +11,19 @@ func _ready():
 	
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _on_player_detect_body_entered(body: CharacterBody2D):
 	if body != null:
-		print("player in")
-		body.notify_nearby_weapon(self)
+		if body.get_class_name() == "enemy":
+			pass
+		else:
+			body.notify_nearby_weapon(self)
 
 
 func _on_player_detect_body_exited(body):
-	print("player out")
-	body.clear_nearby_weapon()
+	if body.get_class_name() == "enemy":
+		pass
+	else:
+		body.clear_nearby_weapon()
 
 func get_class_name():
 	return "mp5"

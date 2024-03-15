@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3xyi4mmvq4p0"
+path="res://.godot/imported/9mm Single.wav-64aba1c52f9f4166e0c9004993ace138.sample"
+
+[deps]
+
+source_file="res://GunScenes/Sounds/9mm Single.wav"
+dest_files=["res://.godot/imported/9mm Single.wav-64aba1c52f9f4166e0c9004993ace138.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
