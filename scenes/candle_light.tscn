@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://dinq5rg84oeik"]
+
+[ext_resource type="Texture2D" uid="uid://bg34aa7glepbx" path="res://assets/6-Candle/1.png" id="1_rchbx"]
+[ext_resource type="Script" path="res://scenes/candle_light.gd" id="1_tf6ej"]
+[ext_resource type="Texture2D" uid="uid://c48bo1ds4iy57" path="res://assets/6-Candle/2.png" id="2_5tfi0"]
+[ext_resource type="Texture2D" uid="uid://fke6nvf1ex20" path="res://assets/6-Candle/3.png" id="3_hvjg8"]
+[ext_resource type="Texture2D" uid="uid://cei0lcbrf8br8" path="res://assets/6-Candle/4.png" id="4_6xi6b"]
+[ext_resource type="Texture2D" uid="uid://bsjbo5w0jnh0j" path="res://assets/6-Candle/5.png" id="5_53170"]
+[ext_resource type="Texture2D" uid="uid://bk422ig838e5x" path="res://assets/6-Candle/6.png" id="6_o7orr"]
+[ext_resource type="Texture2D" uid="uid://06oy1ipqs2rt" path="res://assets/6-Candle/7.png" id="7_22ikx"]
+[ext_resource type="Texture2D" uid="uid://bfvgglfh86rro" path="res://assets/6-Candle/8.png" id="8_225vt"]
+[ext_resource type="Texture2D" uid="uid://7lmvf6c6idxh" path="res://light.png" id="9_3m4v2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owwyv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rchbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5tfi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hvjg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6xi6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_53170")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o7orr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_22ikx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_225vt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[node name="candleLight" type="Node2D"]
+script = ExtResource("1_tf6ej")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+sprite_frames = SubResource("SpriteFrames_owwyv")
+frame_progress = 0.966879
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(1, -13)
+scale = Vector2(0.269531, 0.269531)
+shadow_enabled = true
+texture = ExtResource("9_3m4v2")

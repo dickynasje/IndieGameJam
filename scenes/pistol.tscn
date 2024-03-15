@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b13yg1u8jgiii"]
+[gd_scene load_steps=6 format=3 uid="uid://b13yg1u8jgiii"]
 
 [ext_resource type="Script" path="res://scenes/pistol.gd" id="1_f8lgn"]
 [ext_resource type="Texture2D" uid="uid://cnetmsweedw61" path="res://assets/pistol.png" id="2_n6ndj"]
 [ext_resource type="PackedScene" uid="uid://caaskaevg85kn" path="res://scenes/bullet.tscn" id="2_pb726"]
+[ext_resource type="PackedScene" uid="uid://dem43vrrocsk7" path="res://GunScenes/pistolshootParticle.tscn" id="3_2fbrr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxnny"]
 size = Vector2(37, 29)
@@ -10,6 +11,7 @@ size = Vector2(37, 29)
 [node name="Gun" type="Node2D" node_paths=PackedStringArray("barrel_pos")]
 script = ExtResource("1_f8lgn")
 bullet = ExtResource("2_pb726")
+shootParticle = ExtResource("3_2fbrr")
 fireRate = 3.0
 barrel_pos = NodePath("Marker2D")
 shoot_mode = "semi_auto"

@@ -1,0 +1,16 @@
+Villain Dialogue:[
+"HOW DID YOU COME THIS FAR?!",
+"HOW DID YOU GET PAST THE 127 HP 😱 SLIME",
+"YOUR ADVENTURING ENDS HERE."
+]
+
+
+VillainDeath:[
+"no... my legacy...",
+]
+
+MainCharacter:[
+"good ole engineering from british blokes in a shed"
+]
+
+GAME END.

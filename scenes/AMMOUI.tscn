@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ojvm0pb2bdy"]
+
+[ext_resource type="Script" path="res://AMMOUI.gd" id="1_syk8c"]
+[ext_resource type="FontFile" uid="uid://dtplwths11wym" path="res://assets/m3x6.ttf" id="2_xg322"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_syk8c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1368.0
+offset_bottom = 768.0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.6, 0.890196, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_fonts/font = ExtResource("2_xg322")
+theme_override_font_sizes/font_size = 91
+text = "AMMO cur/max"
+horizontal_alignment = 2
+vertical_alignment = 1

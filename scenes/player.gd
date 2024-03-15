@@ -1,5 +1,8 @@
+class_name PlayerEntity
 extends CharacterBody2D
 @onready var weapons: Node2D = get_node("Weapons")
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var canvasLayer = $"../../CanvasLayer"
 var current_weapon: Node2D
 const SPEED = 350.0
 const JUMP_VELOCITY = -400.0
@@ -11,7 +14,7 @@ var armor: int = 25
 var HP: int = 100
 var money: int = 0
 
-enum State {Run, Idle, Jump, Shoot, Hurt}
+enum State {Run, Idle, Jump, Shoot, Hurt ,Fall}
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -28,6 +31,7 @@ func _physics_process(delta):
 	falling(delta)
 	handle_movement()
 	move_and_slide()
+	handle_anim_state()
 	#print(get_parent().get_children())
 	#determine mouse position for gun sprite
 	#print((get_global_mouse_position()-global_position).normalized())
@@ -45,6 +49,16 @@ func handle_movement():
 		velocity.x = move_toward(velocity.x, direction * SPEED, 60.0)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if velocity.y<0:
+		current_state = State.Jump
+	elif velocity.y>0:
+		current_state = State.Fall
+		
+	if is_on_floor() and velocity.x == 0:
+		current_state = State.Idle
+	elif is_on_floor() and velocity.x != 0:
+		current_state = State.Run
 
 func switch_weapon():
 	if nearby_weapon.get_class_name() != current_weapon.get_class_name():
@@ -55,16 +69,17 @@ func switch_weapon():
 		pick_up_weapon(nearby_weapon)
 		nearby_weapon = null
 
-func pick_up_weapon(weapon: Node2D):
+func pick_up_weapon(floorweapon: Node2D):
 	if current_weapon != null:
 		current_weapon.hide()
 	
-	weapon.get_parent().call_deferred("remove_child", weapon)
-	weapons.call_deferred("add_child", weapon)
-	weapon.set_deferred("owner", weapons)
-	weapon.dropped = false
-	weapon.position = Vector2.ZERO
-	current_weapon = weapon
+	floorweapon.get_parent().call_deferred("remove_child", floorweapon)
+	weapons.call_deferred("add_child", floorweapon)
+	floorweapon.set_deferred("owner", weapons)
+	floorweapon.dropped = false
+	floorweapon.position = Vector2.ZERO
+	current_weapon = floorweapon
+	_on_canvas_layer_gun_change()
 	#Datasave.weapons.append(weapon.duplicate(8))
 	#Datasave.weaponbarrelpos = weapon.get_node("Marker2D").duplicate()
 
@@ -74,7 +89,6 @@ func drop_weapon():
 	var drop_position = nearby_weapon.global_position
 	current_weapon.show()
 	
-	print(current_weapon.get_parent())
 	current_weapon.get_parent().remove_child(current_weapon)
 	get_parent().call_deferred("add_child", current_weapon)
 	current_weapon.global_position = drop_position
@@ -87,8 +101,8 @@ func drop_weapon():
 	#Datasave.weapons.clear()
 	#Datasave.weaponbarrelpos = null
 
-func notify_nearby_weapon(weapon: Node2D):
-	nearby_weapon = weapon
+func notify_nearby_weapon(floorweapon: Node2D):
+	nearby_weapon = floorweapon
 
 func clear_nearby_weapon():
 	nearby_weapon = null
@@ -114,5 +128,25 @@ func _restore_previous_state():
 		#current_weapon = weapons.get_child(0)
 		#current_weapon.show()
 	
-	
-	
+func handle_anim_state():
+	if current_state == State.Idle:
+		anim.play("idle")
+	elif current_state == State.Run:
+		anim.play("walk")
+	elif current_state == State.Jump:
+		anim.play("jump")
+	elif current_state == State.Fall:
+		anim.play("fall")
+		
+	if velocity.x < 0:
+		anim.set_flip_h(true)
+	else:
+		anim.set_flip_h(false)
+
+func get_class_name():
+	return "player"
+
+
+func _on_canvas_layer_gun_change():
+	canvasLayer.refresh_weapon()
+	pass # Replace with function body.

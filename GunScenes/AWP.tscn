@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://df0vg4qpsvpgk"]
+
+[ext_resource type="Script" path="res://GunScenes/AWP.gd" id="1_2ij6h"]
+[ext_resource type="Texture2D" uid="uid://vjwhjxkt7fa4" path="res://weapon pngs/AWP.png" id="2_7atfk"]
+[ext_resource type="PackedScene" uid="uid://caaskaevg85kn" path="res://scenes/bullet.tscn" id="2_13ihp"]
+[ext_resource type="PackedScene" uid="uid://455tyhjg5l1q" path="res://GunScenes/AWPPARTICLE.tscn" id="3_4nr42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcc77"]
+size = Vector2(18, 15)
+
+[node name="Weapon" type="Node2D" node_paths=PackedStringArray("barrel_pos")]
+script = ExtResource("1_2ij6h")
+bullet = ExtResource("2_13ihp")
+shootParticle = ExtResource("3_4nr42")
+fireRate = 0.5
+damage = 100
+barrel_pos = NodePath("Marker2D")
+max_ammo = 5
+current_ammo = 5
+reload_time = 4.0
+shoot_mode = "semi_auto"
+weapon_type = "sniper"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(33, 1.5)
+scale = Vector2(1, 1.1875)
+texture = ExtResource("2_7atfk")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(60, 0)
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
+position = Vector2(30, 1.5)
+shape = SubResource("RectangleShape2D_fcc77")
+
+[connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detect_body_entered"]
+[connection signal="body_exited" from="PlayerDetect" to="." method="_on_player_detect_body_exited"]

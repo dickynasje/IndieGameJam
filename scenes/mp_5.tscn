@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://duecnb6tnn1r"]
+[gd_scene load_steps=6 format=3 uid="uid://duecnb6tnn1r"]
 
 [ext_resource type="Script" path="res://scenes/mp_5.gd" id="1_4puxw"]
 [ext_resource type="Texture2D" uid="uid://c8xs2tbk7qidq" path="res://assets/mp5.png" id="1_enty4"]
 [ext_resource type="PackedScene" uid="uid://caaskaevg85kn" path="res://scenes/bullet.tscn" id="2_wohss"]
+[ext_resource type="PackedScene" uid="uid://dem43vrrocsk7" path="res://GunScenes/pistolshootParticle.tscn" id="3_vqukd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4n1lf"]
 size = Vector2(50, 25)
@@ -10,10 +11,13 @@ size = Vector2(50, 25)
 [node name="MP5" type="Node2D" node_paths=PackedStringArray("barrel_pos")]
 script = ExtResource("1_4puxw")
 bullet = ExtResource("2_wohss")
-fireRate = 14.613
+shootParticle = ExtResource("3_vqukd")
+fireRate = 9.0
+damage = 4
 barrel_pos = NodePath("Marker2D")
-max_ammo = 30
-current_ammo = 30
+max_ammo = 19
+current_ammo = 19
+reload_time = 1.3
 shoot_mode = "auto"
 weapon_type = "machine_gun"
 

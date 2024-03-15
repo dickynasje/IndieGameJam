@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq67fmui720uq"]
+
+[ext_resource type="AudioStream" uid="uid://d3xyi4mmvq4p0" path="res://GunScenes/Sounds/9mm Single.wav" id="1_8y0ij"]
+[ext_resource type="AudioStream" uid="uid://b37g040swul08" path="res://GunScenes/Sounds/9mm Pistol Reload 1.wav" id="2_6pdnk"]
+[ext_resource type="AudioStream" uid="uid://qagdl70teifa" path="res://GunScenes/Sounds/9mm Pistol Reload 2.wav" id="3_kpl5v"]
+[ext_resource type="AudioStream" uid="uid://qm5dfmgjdm0s" path="res://GunScenes/Sounds/9mm Pistol Slide Lock.wav" id="4_agldg"]
+[ext_resource type="AudioStream" uid="uid://hc2x0xklvwyp" path="res://GunScenes/Sounds/9mm Pistol Slide Release.wav" id="5_56kvb"]
+[ext_resource type="AudioStream" uid="uid://1ntm3cujxc4h" path="res://GunScenes/Sounds/308 Single.wav" id="6_gly2r"]
+[ext_resource type="AudioStream" uid="uid://b1iemimjbl4d7" path="res://GunScenes/Sounds/308 Bolt Cycle WAV.wav" id="7_vh2f1"]
+
+[node name="AudioManager" type="Node2D"]
+
+[node name="gun_effect" type="Node" parent="."]
+
+[node name="9mm" type="Node" parent="gun_effect"]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="gun_effect/9mm"]
+stream = ExtResource("1_8y0ij")
+volume_db = -10.0
+
+[node name="Reload1" type="AudioStreamPlayer" parent="gun_effect/9mm"]
+stream = ExtResource("2_6pdnk")
+
+[node name="Reload2" type="AudioStreamPlayer" parent="gun_effect/9mm"]
+stream = ExtResource("3_kpl5v")
+
+[node name="Lock" type="AudioStreamPlayer" parent="gun_effect/9mm"]
+stream = ExtResource("4_agldg")
+
+[node name="Release" type="AudioStreamPlayer" parent="gun_effect/9mm"]
+stream = ExtResource("5_56kvb")
+
+[node name="308(7_62x51)" type="Node" parent="gun_effect"]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="gun_effect/308(7_62x51)"]
+stream = ExtResource("6_gly2r")
+
+[node name="Reload1" type="AudioStreamPlayer" parent="gun_effect/308(7_62x51)"]
+
+[node name="Reload2" type="AudioStreamPlayer" parent="gun_effect/308(7_62x51)"]
+
+[node name="Lock" type="AudioStreamPlayer" parent="gun_effect/308(7_62x51)"]
+
+[node name="Release" type="AudioStreamPlayer" parent="gun_effect/308(7_62x51)"]
+
+[node name="BoltAction" type="AudioStreamPlayer" parent="gun_effect/308(7_62x51)"]
+stream = ExtResource("7_vh2f1")
+
+[node name="20Gauge" type="Node" parent="gun_effect"]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="gun_effect/20Gauge"]
+
+[node name="556" type="Node" parent="gun_effect"]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="gun_effect/556"]
+
+[node name="7_62x39" type="Node" parent="gun_effect"]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="gun_effect/7_62x39"]
+
+[node name="Pistol" type="Node" parent="gun_effect"]
